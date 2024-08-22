@@ -1,3 +1,4 @@
+import { supabase } from '@/app/_lib/supabase';
 import { eachDayOfInterval } from 'date-fns';
 
 /////////////
