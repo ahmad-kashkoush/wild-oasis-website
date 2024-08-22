@@ -1,8 +1,9 @@
-function Page(){
+function Page() {
     return (
-        <div>
-           Account Page
-        </div>
+        <h2 className="font-semibold text-2xl text-accent-400 mb-7">
+            Welcome, Ahmed
+        </h2>
+
     );
 }
 export default Page;
