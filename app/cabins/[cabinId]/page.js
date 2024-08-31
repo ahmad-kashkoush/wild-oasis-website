@@ -8,6 +8,20 @@ export async function generateMetadata({ params }) {
     }
 
 }
+/**
+ * - Generates static parameters for the [cabinId] route by fetching all cabins' ids.
+ * - The result is an array of objects with a single property `cabinId` which is a string.
+ * - The route is dynamic because it depends on the `cabinId` parameter.
+ * - However, we know all the possible `cabinId`s, so we can **pre-fetch** them.
+ * - This function is used by Next.js to generate static pages.
+ */
+export async function generateStaticParams() {
+    
+    const cabins = await getCabins();
+    const cabinsIds = cabins.map((cabin) => ({ cabinId: String(cabin.id) }));
+    console.log(cabinsIds);
+    return cabinsIds;
+}
 
 export default async function Page({ params }) {
     const { id, name, maxCapacity, regularPrice, discount, image, description } = await getCabin(params.cabinId);
