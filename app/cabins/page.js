@@ -1,7 +1,10 @@
+// static: uses ISR (aka. incremental static regeneration)
 import Spinner from "@/app/_components/Spinner";
 import CabinsList from "@/app/cabins/CabinsList";
 import { Suspense } from "react";
 
+// force to be dynamic page
+export const revalidate=0;
 export const metadata = {
     title: "Cabins"
 }

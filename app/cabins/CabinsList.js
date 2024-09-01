@@ -1,7 +1,11 @@
+import { unstable_noStore as noStore } from "next/cache";
 import CabinCard from "@/app/_components/CabinCard";
 import { getCabins } from "@/app/_lib/data-service";
 
 export default async function CabinsList() {
+    // you can pass revalidate time to fetch function but I don't have it
+    // so I'll use no store function: aka. component level revalidation
+    noStore();
     const cabins = await getCabins();
     return (
         <>
