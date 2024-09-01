@@ -1,3 +1,4 @@
+// static
 import ReservationCard from "@/app/_components/ReservationCard";
 
 export const metadata={

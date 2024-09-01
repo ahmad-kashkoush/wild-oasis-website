@@ -1,3 +1,4 @@
+// static for now
 export default function Page() {
     // CHANGE
     const reservationId = 23;

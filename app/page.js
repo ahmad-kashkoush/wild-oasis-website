@@ -4,7 +4,7 @@ import Image from "next/image";
 // Skiping width and height warning by statically importing image
 import bg from "@/public/bg.png";
 import Link from "next/link";
-
+// static rendering
 function Page() {
   return (
     <main className="mt-24">

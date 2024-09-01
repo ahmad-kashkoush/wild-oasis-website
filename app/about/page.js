@@ -1,7 +1,14 @@
 import Image from "next/image";
 import about1 from "@/public/about-1.jpg";
 import about2 from "@/public/about-2.jpg";
-export default function Page() {
+import { getCabins } from "@/app/_lib/data-service";
+export const revalidate=86400;
+export default async function Page() {
+    /** Challenge
+     * Fetch number of cabins 
+     * revalidate it once per day
+     */
+    const cabins = await getCabins();
     return (
         <div className="grid grid-cols-5 gap-x-24 gap-y-32 text-lg items-center">
             <div className="col-span-3">
@@ -11,21 +18,21 @@ export default function Page() {
 
                 <div className="space-y-8">
                     <p>
-                        Where nature's beauty and comfortable living blend seamlessly.
+                        Where nature&lsquo;s beauty and comfortable living blend seamlessly.
                         Hidden away in the heart of the Italian Dolomites, this is your
-                        paradise away from home. But it's not just about the luxury cabins.
-                        It's about the experience of reconnecting with nature and enjoying
+                        paradise away from home. But it&lsquo;s not just about the luxury cabins.
+                        It&lsquo;s about the experience of reconnecting with nature and enjoying
                         simple pleasures with family.
                     </p>
                     <p>
-                        Our 8 luxury cabins provide a cozy base, but the real freedom and
-                        peace you'll find in the surrounding mountains. Wander through lush
+                        Our {cabins.length} luxury cabins provide a cozy base, but the real freedom and
+                        peace you&lsquo;ll find in the surrounding mountains. Wander through lush
                         forests, breathe in the fresh air, and watch the stars twinkle above
                         from the warmth of a campfire or your hot tub.
                     </p>
                     <p>
-                        This is where memorable moments are made, surrounded by nature's
-                        splendor. It's a place to slow down, relax, and feel the joy of
+                        This is where memorable moments are made, surrounded by nature&lsquo;s
+                        splendor. It&lsquo;s a place to slow down, relax, and feel the joy of
                         being together in a beautiful setting.
                     </p>
                 </div>
@@ -40,11 +47,11 @@ export default function Page() {
 
             {/* What to do if can't statically import image and don't want to set width and height */}
             <div className="col-span-2 relative  aspect-square">
-                <Image 
-                src="/about-2.jpg" 
-                alt="Family that manages The Wild Oasis"
-                fill
-                className="object-cover object-center"
+                <Image
+                    src="/about-2.jpg"
+                    alt="Family that manages The Wild Oasis"
+                    fill
+                    className="object-cover object-center"
                 />
             </div>
 
@@ -61,10 +68,10 @@ export default function Page() {
                         dedication to creating a warm, welcoming environment.
                     </p>
                     <p>
-                        Over the years, we've maintained the essence of The Wild Oasis,
+                        Over the years, we&lsquo;ve maintained the essence of The Wild Oasis,
                         blending the timeless beauty of the mountains with the personal
-                        touch only a family business can offer. Here, you're not just a
-                        guest; you're part of our extended family. So join us at The Wild
+                        touch only a family business can offer. Here, you&lsquo;re not just a
+                        guest; you&lsquo;re part of our extended family. So join us at The Wild
                         Oasis soon, where tradition meets tranquility, and every visit is
                         like coming home.
                     </p>
