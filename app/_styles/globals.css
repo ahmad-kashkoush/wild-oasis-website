@@ -36,5 +36,22 @@
   --rdp-cell-size: 32px !important;
   --rdp-accent-color: theme("colors.accent.500") !important;
   --rdp-background-color: theme("colors.accent.600") !important;
+  --rdp-day-height: 2rem !important;
+  --rdp-day-width: 2rem !important;
   margin: 0 !important;
+}
+
+.rdp-months {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 2fr;
+  row-gap: 3rem;
+  margin-bottom: 2rem;
+}
+.rdp-nav {
+  grid-area: 1/1/3/2;
+}
+.rdp-month {
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
