@@ -1,17 +1,18 @@
 // static: uses ISR (aka. incremental static regeneration)
+import Filter from "@/app/_components/Filter";
 import Spinner from "@/app/_components/Spinner";
 import CabinsList from "@/app/cabins/CabinsList";
 import { Suspense } from "react";
 
 // force to be dynamic page
-export const revalidate=0;
+export const revalidate = 0;
 export const metadata = {
     title: "Cabins"
 }
-export default function Page() {
+export default function Page({ searchParams }) {
     // CHANGE
-
-
+    const filter = searchParams?.capacity ?? "all";
+    // console.log(filter);
 
     return (
         <div>
@@ -26,8 +27,12 @@ export default function Page() {
                 away from home. The perfect spot for a peaceful, calm vacation. Welcome
                 to paradise.
             </p>
-            <Suspense fallback={<Spinner />}>
-                <CabinsList />
+            <div className="flex justify-end mb-8">
+                <Filter />
+            </div>
+            {/* to make suspense work on filter change, you need to add unique key */}
+            <Suspense fallback={<Spinner />} key={filter}>
+                <CabinsList filter={filter} />
             </Suspense>
 
         </div>
