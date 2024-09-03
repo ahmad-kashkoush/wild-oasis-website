@@ -1,5 +1,6 @@
 // static: uses ISR (aka. incremental static regeneration)
 import Filter from "@/app/_components/Filter";
+import ReservationReminder from "@/app/_components/ReservationReminder";
 import Spinner from "@/app/_components/Spinner";
 import CabinsList from "@/app/cabins/CabinsList";
 import { Suspense } from "react";
@@ -33,6 +34,7 @@ export default function Page({ searchParams }) {
             {/* to make suspense work on filter change, you need to add unique key */}
             <Suspense fallback={<Spinner />} key={filter}>
                 <CabinsList filter={filter} />
+                <ReservationReminder />
             </Suspense>
 
         </div>
