@@ -36,26 +36,24 @@
   --rdp-cell-size: 32px !important;
   --rdp-accent-color: theme("colors.accent.500") !important;
   --rdp-background-color: theme("colors.accent.600") !important;
-  --rdp-day-height: 2rem !important;
-  --rdp-day-width: 2rem !important;
-  --rdp-range_middle-background-color: theme("colors.accent.500");
-  --rdp-range_middle-color: theme("colors.primary.800");
-  --rdp-range_start-color: theme("colors.primary.800");
+  --rdp-day-height: 0.5rem !important;
+  --rdp-day-width: 17% !important;
+  --rdp-range_middle-background-color: theme("colors.accent.500") !important;
 
   margin: 0 !important;
 }
 
-.rdp-months {
+.rdp .rdp-months {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto 2fr;
   row-gap: 3rem;
   margin-bottom: 2rem;
 }
-.rdp-nav {
+.rdp .rdp-nav {
   grid-area: 1/1/3/2;
 }
-.rdp-month {
+.rdp .rdp-month {
   grid-row-start: 2;
   grid-row-end: 3;
 }
