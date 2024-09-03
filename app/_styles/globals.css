@@ -38,6 +38,10 @@
   --rdp-background-color: theme("colors.accent.600") !important;
   --rdp-day-height: 2rem !important;
   --rdp-day-width: 2rem !important;
+  --rdp-range_middle-background-color: theme("colors.accent.500");
+  --rdp-range_middle-color: theme("colors.primary.800");
+  --rdp-range_start-color: theme("colors.primary.800");
+
   margin: 0 !important;
 }
 
