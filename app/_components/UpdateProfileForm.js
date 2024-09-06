@@ -1,21 +1,27 @@
 "use client";
 
+import { updateProfileAction } from "@/app/_lib/action";
 
-function UpdateProfileForm({children}) {
-    const countryFlag="pt.jpg";
+
+function UpdateProfileForm({ children, guest }) {
+    const countryFlag = "pt.jpg";
     return (
-        <form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
+        <form action={updateProfileAction} className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
             <div className="space-y-2">
-                <label>Full name</label>
+                <label htmlFor="fullName">Full name</label>
                 <input
+                    defaultValue={guest.fullName}
+                    name="fullName"
                     disabled
                     className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
                 />
             </div>
 
             <div className="space-y-2">
-                <label>Email address</label>
+                <label htmlFor="email">Email address</label>
                 <input
+                    name="email"
+                    defaultValue={guest.email}
                     disabled
                     className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
                 />
@@ -25,10 +31,10 @@ function UpdateProfileForm({children}) {
                 <div className="flex items-center justify-between">
                     <label htmlFor="nationality">Where are you from?</label>
                     <img
-                        src={countryFlag || ""}
+                        src={guest.countryFlag||countryFlag || ""}
                         alt="Country flag"
                         className="h-5 rounded-sm"
-
+                        
                     />
                 </div>
                 {children}
@@ -38,6 +44,7 @@ function UpdateProfileForm({children}) {
             <div className="space-y-2">
                 <label htmlFor="nationalID">National ID number</label>
                 <input
+                    defaultValue={guest.nationalID}
                     name="nationalID"
                     className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
                 />
