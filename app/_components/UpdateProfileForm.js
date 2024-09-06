@@ -1,6 +1,8 @@
 "use client";
 
+import SpinnerMini from "@/app/_components/SpinnerMini";
 import { updateProfileAction } from "@/app/_lib/action";
+import { useFormStatus } from "react-dom";
 
 
 function UpdateProfileForm({ children, guest }) {
@@ -31,10 +33,10 @@ function UpdateProfileForm({ children, guest }) {
                 <div className="flex items-center justify-between">
                     <label htmlFor="nationality">Where are you from?</label>
                     <img
-                        src={guest.countryFlag||countryFlag || ""}
+                        src={guest.countryFlag || countryFlag || ""}
                         alt="Country flag"
                         className="h-5 rounded-sm"
-                        
+
                     />
                 </div>
                 {children}
@@ -51,11 +53,20 @@ function UpdateProfileForm({ children, guest }) {
             </div>
 
             <div className="flex justify-end items-center gap-6">
-                <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-                    Update profile
-                </button>
+                <FormButton />
             </div>
         </form>
     );
+}
+function FormButton() {
+    const { pending } = useFormStatus();
+    return (
+        <button
+            disabled={pending}
+            className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
+            {!pending ? "Update profile" : <SpinnerMini />}
+        </button>
+    )
+
 }
 export default UpdateProfileForm;
