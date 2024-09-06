@@ -43,11 +43,10 @@ export async function updateProfileAction(formData) {
     return data;
 }
 
-export async function deleteBookingAction(formData) {
+export async function deleteBookingAction(bookingId) {
     const session = await auth();
     if (!session) throw new Error("Login first");
-    const id = formData.get("bookingId");
-    const { data, error } = await supabase.from('bookings').delete().eq('id', id);
+    const { data, error } = await supabase.from('bookings').delete().eq('id', bookingId);
 
     if (error) {
         console.error(error);
