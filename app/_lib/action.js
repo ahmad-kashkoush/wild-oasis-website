@@ -27,7 +27,6 @@ export async function updateProfileAction(formData) {
     if (!/^[a-zA-Z0-9]{6,12}$/.test(nationalID))
         throw new Error("Please provide a valid national id");
     const updatedFields = { nationalID, nationality, countryFlag };
-    console.log(session);
 
     const { data, error } = await supabase
         .from('guests')
@@ -42,4 +41,18 @@ export async function updateProfileAction(formData) {
     }
     revalidatePath("/account/profile")
     return data;
+}
+
+export async function deleteBookingAction(formData) {
+    const session = await auth();
+    if (!session) throw new Error("Login first");
+    const id = formData.get("bookingId");
+    const { data, error } = await supabase.from('bookings').delete().eq('id', id);
+
+    if (error) {
+        console.error(error);
+        throw new Error('Booking could not be deleted');
+    }
+    revalidatePath("/account/reservations")
+
 }
