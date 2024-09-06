@@ -1,6 +1,7 @@
 "use server";
 
 import { auth, signIn, signOut } from "@/app/_lib/auth";
+import { getBookings } from "@/app/_lib/data-service";
 import { supabase } from "@/app/_lib/supabase";
 import { revalidatePath } from "next/cache";
 
@@ -46,6 +47,13 @@ export async function updateProfileAction(formData) {
 export async function deleteBookingAction(bookingId) {
     const session = await auth();
     if (!session) throw new Error("Login first");
+    const bookings=await getBookings(session.user.guestId);
+    const bookingIds=bookings.map(booking=>booking.id);
+
+    // throw error if booking id is not allowed by the guest
+    if(!bookingIds.includes(bookingId))
+        throw new Error("not Allowed for you");
+        
     const { data, error } = await supabase.from('bookings').delete().eq('id', bookingId);
 
     if (error) {
