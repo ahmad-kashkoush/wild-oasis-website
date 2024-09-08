@@ -45,6 +45,8 @@ export async function updateProfileAction(formData) {
 }
 
 export async function deleteBookingAction(bookingId) {
+    // await new Promise((res) => setTimeout(res, 6000));
+
     const session = await auth();
     if (!session) throw new Error("Login first");
     const bookings = await getBookings(session.user.guestId);
