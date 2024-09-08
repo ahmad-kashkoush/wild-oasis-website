@@ -4,7 +4,7 @@ import { auth, signIn, signOut } from "@/app/_lib/auth";
 import { getBookings } from "@/app/_lib/data-service";
 import { supabase } from "@/app/_lib/supabase";
 import { revalidatePath } from "next/cache";
-
+import { redirect } from "next/navigation";
 export async function signInAction() {
     await signIn("google", { redirectTo: "/account" });
 
@@ -47,13 +47,13 @@ export async function updateProfileAction(formData) {
 export async function deleteBookingAction(bookingId) {
     const session = await auth();
     if (!session) throw new Error("Login first");
-    const bookings=await getBookings(session.user.guestId);
-    const bookingIds=bookings.map(booking=>booking.id);
+    const bookings = await getBookings(session.user.guestId);
+    const bookingIds = bookings.map(booking => booking.id);
 
     // throw error if booking id is not allowed by the guest
-    if(!bookingIds.includes(bookingId))
+    if (!bookingIds.includes(bookingId))
         throw new Error("not Allowed for you");
-        
+
     const { data, error } = await supabase.from('bookings').delete().eq('id', bookingId);
 
     if (error) {
@@ -62,4 +62,39 @@ export async function deleteBookingAction(bookingId) {
     }
     revalidatePath("/account/reservations")
 
+}
+
+export async function updateReservationAction(formData) {
+
+    const id = +formData.get("reservationId");
+    const session = await auth();
+    if (!session) throw new Error("Login first");
+    const bookings = await getBookings(session.user.guestId);
+    const bookingIds = bookings.map(booking => booking.id);
+
+    // throw error if booking id is not allowed by the guest
+    if (!bookingIds.includes(id))
+        throw new Error("not Allowed for you");
+    const updatedFields = {
+        numGuests: formData.get("numGuests"),
+        observations: formData.get("observations")
+    }
+    console.log(formData);
+    const { data, error } = await supabase
+        .from('bookings')
+        .update(updatedFields)
+        .eq('id', id)
+        .select()
+        .single();
+
+    if (error) {
+        console.error(error);
+        throw new Error('Booking could not be updated');
+    }
+
+
+    // tradeOfs, I'll wait for jonas to see how he is going to update it
+    revalidatePath(`/account/reservations/edit/${id}`)
+    revalidatePath(`/account/reservations`)
+    redirect("/account/reservations")
 }

@@ -202,6 +202,7 @@ export async function updateGuest(id, updatedFields) {
 }
   */
 
+/*
 export async function updateBooking(id, updatedFields) {
   const { data, error } = await supabase
     .from('bookings')
@@ -216,6 +217,7 @@ export async function updateBooking(id, updatedFields) {
   }
   return data;
 }
+  */
 
 /////////////
 // DELETE

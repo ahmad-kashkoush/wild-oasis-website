@@ -13,10 +13,10 @@ function DeleteReservation({ bookingId }) {
   return (
     //  can call server actions on client components
     <button onClick={handleDelete} className='group flex items-center gap-2 uppercase text-xs font-bold text-primary-300 flex-grow px-3 hover:bg-accent-600 transition-colors hover:text-primary-900'>
-      {!isPending ? <>
+      {!isPending ? <span className='flex gap-2 items-center justify-center text-[.75rem]'>
         <TrashIcon className='h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors' />
-        <span className='mt-1'>Delete</span>
-      </> :
+        <span className='mt-1'>Del</span>
+      </span> :
         <span className='mx-auto'><SpinnerMini /></span>
       }
     </button>
