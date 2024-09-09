@@ -81,7 +81,6 @@ export async function updateReservationAction(formData) {
         numGuests: formData.get("numGuests"),
         observations: formData.get("observations")
     }
-    console.log(formData);
     const { data, error } = await supabase
         .from('bookings')
         .update(updatedFields)
@@ -100,3 +99,39 @@ export async function updateReservationAction(formData) {
     revalidatePath(`/account/reservations`)
     redirect("/account/reservations")
 }
+
+export async function createReservationAction(bookingData, formData) {
+    const session = await auth();
+    if (!session) throw new Error("Login first");
+    const newBooking = {
+        ...bookingData,
+        numGuests: formData.get("numGuests"),
+        observations: formData.get("observations").slice(0, 1000),
+        guestId: session.user.guestId,
+        extrasPrice: 0,
+        totalPrice: bookingData.cabinPrice,
+        isPaid: false,
+        hasBreakfast: false,
+        status: "unconfirmed",
+
+    };
+        const { data, error } = await supabase
+        .from('bookings')
+        .insert([newBooking])
+        // So that the newly created object gets returned!
+        .select()
+        .single();
+
+      if (error) {
+        console.error(error);
+        throw new Error('Booking could not be created');
+      }
+      revalidatePath(`/cabins/${data.cabinId}`);
+      redirect("/thank_you");
+
+}
+
+/*
+  "status",
+  "hasBreakfast",
+  */    

@@ -39,7 +39,7 @@
   --rdp-day-height: 0.5rem !important;
   --rdp-day-width: 17% !important;
   --rdp-range_middle-background-color: theme("colors.accent.500") !important;
-
+  
   margin: 0 !important;
 }
 
@@ -52,6 +52,7 @@
 }
 .rdp .rdp-nav {
   grid-area: 1/1/3/2;
+  display: none;
 }
 .rdp .rdp-month {
   grid-row-start: 2;
