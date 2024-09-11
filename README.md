@@ -26,10 +26,14 @@ Credits goes to: **jonas-schmedtmann**
 ### vid todo
 
 
-https://github.com/user-attachments/assets/7e8ca76d-3996-4b14-bb0e-6e59a5573cb4
 
 
-![image-20240911182732571](public/project picture.png)
+https://github.com/user-attachments/assets/c6b610b8-1aab-477f-9eda-76b5415b09b0
+
+
+
+
+![image-20240911182732571](public/project%20picture.png)
 
 ## What I've learnt
 
