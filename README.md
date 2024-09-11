@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
 
-## Getting Started
+   <img src="public/logo.png" />
 
-First, run the development server:
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## About the Project
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Wild Oasis** is a secure and dynamic hotel reservation platform. It offers users a seamless experience to explore available cabins, make reservations effortlessly, and access a detailed history of their interactions. With robust authentication measures in place, users can confidently manage their bookings in a safe and user-friendly environment.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Credits goes to: **jonas-schmedtmann**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+👉 Live demo: https://wild-oasis-website-inky.vercel.app/
 
-## Learn More
+### Built with:
 
-To learn more about Next.js, take a look at the following resources:
+- Reactjs
+- NextJs
+- NextAuth.js
+- Tailwindcss
+- Supabase
+- ErrorBoundary for catching rendering errors
+- postgres
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Demo
+### vid todo
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+https://github.com/user-attachments/assets/7e8ca76d-3996-4b14-bb0e-6e59a5573cb4
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![image-20240911182732571](public/project picture.png)
+
+## What I've learnt
+
+1. How to set app router using Nextjs
+2. How to use server actions
+3. Authentication and Authorization using NextAuth.js
